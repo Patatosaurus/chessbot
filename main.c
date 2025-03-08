@@ -1,41 +1,34 @@
 #include <stdio.h>
-char echiquier[64];
+#include <stdint.h>
 
-void initialisation(char echiquier[]) {
-    for (int i=16; i<48; i++) {
-        echiquier[i] = 'O';
-    }
-    echiquier[0] = echiquier[7] = 'r';
-    echiquier[1] = echiquier[6] = 'n';
-    echiquier[2] = echiquier[5] = 'b';
-    echiquier[3] = 'q';
-    echiquier[4] = 'k';
-    for (int i=8; i<16; i++) {
-        echiquier[i] = 'p';
-    }
 
-    echiquier[56] = echiquier[63] = 'R';
-    echiquier[57] = echiquier[62] = 'N';
-    echiquier[58] = echiquier[61] = 'B';
-    echiquier[59] = 'Q';
-    echiquier[60] = 'K';
+uint64_t whitePawns = 0x000000000000FF00;
+uint64_t whiteKnights = 0x0000000000000042;
+uint64_t whiteBishops = 0x0000000000000024;
+uint64_t whiteRooks = 0x0000000000000081;
+uint64_t whiteQueen = 0x0000000000000008;
+uint64_t whiteKing = 0x0000000000000010; 
 
-    for (int i=48; i<56; i++) {
-        echiquier[i] = 'P';
-    }
-}
 
-void chessboard_state(char echiquier[]) {
-    for (int i=0; i<64; i++) {
-        printf("%c ", echiquier[i]);
-        if ((i+1)%8==0) {
-            printf("\n");
+uint64_t blackPawns = 0x00FF000000000000;
+uint64_t blackKnights = 0x4200000000000000;
+uint64_t blackBishops = 0x2400000000000000;
+uint64_t blackRooks = 0x8100000000000000;
+uint64_t blackQueen = 0x0800000000000000;
+uint64_t blackKing = 0x1000000000000000; 
+
+void printBitboard(uint64_t bitboard) {
+    for (int rank=7; rank >=0; rank--) {
+        for (int file=0; file<8; file++) {
+            int square = rank*8+file;
+            printf("%d", (bitboard >> square) & 1);
         }
+        printf("\n");
     }
+    printf("\n");
 }
 
 int main() {
-    initialisation(echiquier);
-    chessboard_state(echiquier);
+    printBitboard(whiteKing);
     return 0;
 }
