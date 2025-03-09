@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
-#include <assert.h>
+// #include <assert.h>
 
 int numberOfMoves = 0;
 int whoesTurn = 0;
