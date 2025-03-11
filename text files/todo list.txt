@@ -1,0 +1,2 @@
+-fonction qui créé le début de la game
+-assemble attaque normale et Xray dans les struct pieces
