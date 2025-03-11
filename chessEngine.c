@@ -8,8 +8,9 @@ struct chessboard
 struct piece
 {
     int color;
+    int type;
+    uint64_t bitboard;
 };
-
 
 
 enum {
@@ -38,7 +39,6 @@ void printBitboard(uint64_t bitboard) {
     }
     printf("\n");
 }
-
 
 
 int main() {
