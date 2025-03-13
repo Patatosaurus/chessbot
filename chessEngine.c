@@ -129,8 +129,28 @@ void calculateQueensAttacks(uint8_t square, uint64_t allPieces, slidingAttack*sl
 }
 
 void startGame(){
-    chessboard chessGame = {.whoesTurn=true, .allPieces=0xFFFF00000000FFFF, .moveCount=0, 
-                .white.allPieces=0x000000000000FFFF, }; 
+    chessboard chessGame = {.whoesTurn=true,
+                            .allPieces=0xFFFF00000000FFFF,
+                            .moveCount=0, 
+                            .white.allPieces=0x000000000000FFFF,
+                            .white.pawnBitboard=0x000000000000FF00,
+                            .white.knightBitboard=0x0000000000000042,
+                            .white.bishopBitboard=0x0000000000000024,
+                            .white.rookBitboard=0x0000000000000081,
+                            .white.queenBitboard=0x0000000000000008,
+                            .white.kingBitboard=0x0000000000000010,
+                            .white.hasShortCastle=true,
+                            .white.hasLongCastle=true,
+                            .black.allPieces=0x000000000000FFFF,
+                            .black.pawnBitboard=0x00FF000000000000,
+                            .black.knightBitboard=0x4200000000000000,
+                            .black.bishopBitboard=0x2400000000000000,
+                            .black.rookBitboard=0x8100000000000000,
+                            .black.queenBitboard=0x0800000000000000,
+                            .black.kingBitboard=0x1000000000000000,
+                            .black.hasShortCastle=true,
+                            .black.hasLongCastle=false 
+                        };
 }
 
 
