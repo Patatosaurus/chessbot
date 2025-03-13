@@ -30,12 +30,10 @@ typedef struct {
     color black;
     uint64_t allPieces;
 }chessboard;
-
 typedef struct {
     uint64_t attacksBitboard;
     uint64_t xrayAttacksBitboard;
 }slidingAttack;
-
 typedef struct {
     bool color;
     uint8_t type;
@@ -45,7 +43,6 @@ typedef struct {
     uint64_t xrayAttacksBitboard; // important too
     slidingAttack slidingAttacks[8];
 }piece;
-
 
 enum {
     a1, b1, c1, d1, e1, f1, g1, h1, 
@@ -120,7 +117,6 @@ void calculateBishopsAttacks(uint8_t square, uint64_t allPieces, slidingAttack*s
     slidingAttacks[2] = calculateSlidingAttacks(square, false, 2, allPieces);
     slidingAttacks[3] = calculateSlidingAttacks(square, false, 3, allPieces);
 }
-
 void calculateRooksAttacks(uint8_t square, uint64_t allPieces, slidingAttack*slidingAttacks) {
     slidingAttacks[4] = calculateSlidingAttacks(square, true, 4, allPieces);
     slidingAttacks[5] = calculateSlidingAttacks(square, true, 5, allPieces);
@@ -130,6 +126,11 @@ void calculateRooksAttacks(uint8_t square, uint64_t allPieces, slidingAttack*sli
 void calculateQueensAttacks(uint8_t square, uint64_t allPieces, slidingAttack*slidingAttacks) {
     calculateBishopsAttacks(square, allPieces, slidingAttacks);
     calculateRooksAttacks(square, allPieces, slidingAttacks);
+}
+
+void startGame(){
+    chessboard chessGame = {.whoesTurn=true, .allPieces=0xFFFF00000000FFFF, .moveCount=0, 
+                .white.allPieces=0x000000000000FFFF, }; 
 }
 
 
